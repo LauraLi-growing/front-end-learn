@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>认识表单</title>
+
+</head>
+<body>
+  <h3>表单及其他控件属性</h3>
+
+  <!-- input标签为单标签，其他的单标签还有<img />、<base />、<hr />、<br /> -->
+文本输入框：<input type='text' /><br />
+密码输入框：<input type='password' /><br />
+单选框：<input type='radio' /><br />
+复选框：<input type='checkbox' /><br />
+普通按钮：<input type='button' /><br />
+提交按钮：<input type='submit' /><br />
+重置按钮：<input type='reset' /><br />
+图像：<input type='image' /><br />
+文件：<input type='file' />
+
+<p>HTML5新增的input控件的type属性</p>
+邮箱：<input type='email' /><br />
+电话：<input type='tel' /><br />
+url：<input type='url' /><br />
+数字：<input type='number' /><br />
+自由拖动滑块：<input type='range' /><br />
+年月日：<input type='date' /><br />
+<!-- 日期：<input type='datetime' /><br /> -->
+月年：<input type='month' /><br />
+星期年：<input type='week' /><br />
+时间：<input type='time' /><br />
+
+<p>HTML5新增的input控件的其他属性</p>
+标签：<input placeholder='请输入口令' autofocus  />
+
+<hr />
+
+<!-- 如果是一组按钮，要用相同的name进行设置 -->
+<!-- 默认选中使用checked属性 -->
+性别：<input type='radio' name='gender' checked />男 <input type='radio' name='gender' />女<br />
+爱好：<input type='checkbox' name='hobby'  checked />足球
+<input type='checkbox' name='hobby' />篮球
+<input type='checkbox' name='hobby' />羽毛球<br />
+<!-- 限制输入长度使用maxlength设置 -->
+姓名：<input type='text' maxlength='6' /><br />
+用户名：<input type='text' value='小二二' /><br />
+<hr />
+<!-- 点击输入框的标题能使光标聚焦在输入框里，使用label标签 -->
+<!-- 如果label包裹多个input控件，使用for...id进行设置聚焦特定控件 -->
+<label>用户名：<input type='text' /></label><br />
+<label for='second'>
+第一个标签：<input />
+第二个标签：<input  id='second' />
+</label><br />
+文本域：<textarea cols='8' rows='3'></textarea><br />
+下拉框：
+<select>
+<option>天津</option>
+<option>成都</option>
+<option selected>上海</option>
+</select>
+
+<hr />
+  <form action='' method='POST' name='studentInfo'>
+    <fieldset>
+      <legend>学生档案</legend>
+      <label>学生姓名：<input type='text' placeholder='请输入姓名' autocomplete name='username' /></label><br /><br />
+      <label>手机号：<input type='number' required /></label><br /><br />
+      <label>邮箱：<input type='email' /></label><br /><br />
+      所属学院：<input type='text' placeholder='请选择课程' list='classList' /><br /><br />
+      <label>生日：<input type='date' /></label><br /><br />
+      <label>成绩：<input type='number' /></label><br /><br />
+      <label>毕业时间：<input type='date' /></label><br /><br />
+      
+      <input type='submit' /> <input type='reset' />
+      
+      <datalist id='classList'>
+        <option>语文</option>
+        <option>数学</option>
+        <option>英文</option>
+        <option>化学</option>
+      <datalist />
+    </fieldset>
+  </form>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS三特性</title>
+  <style>
+/* 相同的选择器的属性冲突时，采用就近原则（和节点最近） */
+    .f1 {
+      color:red
+    }
+    .f1{
+      color:green
+    }
+
+/* 子元素会继承父元素的属性，并不是所有的都会继承，font-/text-/line-会继承，高度就不会继承 */
+    .f2{
+      color:cyan;
+      font:30px
+    }
+
+/* 优先级：!important >行内样式> id选择器 >类、伪类选择器、伪元素>标签（元素）选择器 */
+#third{
+  color:red;
+}
+.f3{
+  color:blue
+}
+
+/* 优先级权重：0，0，0，1 */
+li{
+  color:red
+}
+/* 优先级权重：0，0，0，2 */
+ul>li{
+  color:brown
+}
+/* 优先级权重：0，0，1，1 */
+.nav li{
+  color:blueviolet
+}
+/* 优先级权重：0，0，1，2 */
+.nav ul > li{
+  color:coral
+}
+/* 优先级权重：0，1，0，0 */
+#qinshi{
+  color:red
+}
+
+/* 11个类选择器的权重并不比1个idi选择器权重高 */
+.a,.b,.c,.d,.e,.f,.g,.h,.i,.j,.k{
+  font-size:40px;
+  color:red
+}
+#test{
+  font-size:20px;
+  color:green
+}
+/* 继承的权重为0 */
+.parent{
+  color:red
+}
+span{
+  color:orangered
+}
+
+
+#father #child{
+  color:blue
+}
+#father p .chid2{
+  color:black
+}
+div .father1 p .child2{
+  color:red
+}
+/* 继承属性权重为0 */
+#father{  
+  color:green !important
+}
+
+/* 继承属性没有权重只是针对于父元素单独设置的属性，不代表父元素和后代元素形成的后代选择器 */
+/* 权重一样的时候，则遵循就近原则 */
+.c1 .c2 div{
+  color:blue;
+}
+div #box3{
+  color:green
+}
+#box1 div{
+  color:darkgreen
+}
+
+  </style>
+</head>
+<body>
+  <h3>CSS三大特性</h3>
+  <div class='f1'>1、层叠性</div>
+  <div class='f1'>相同的选择器的属性冲突时，采用就近原则（和节点最近）</div>
+  <div class='f2'>
+    <p>2、继承性</p>
+    <p>子元素会继承父元素的属性，并不是所有的都会继承，font-/text-/line-会继承，高度就不会继承</p>
+  </div>
+  <p id='third' class='f3'>3、优先级</p>
+  <p id='third' class='f3'>优先级：!important >行内样式> id选择器 >类、伪类选择器、伪元素>标签（元素）选择器</p>
+  <hr />
+  <div class=nav>
+    <ul id='qinshi' style='color:darkorange'>
+      <li>赤练</li>
+      <li>卫庄</li>
+      <li>白凤</li>
+    </ul>
+  </div>
+  <p>注意：</p>
+  <div class='a b c d e f g h i j  k' id='test'>
+    1、优先级权重并不是按十进制来进行计算，即数位之间没有进制---11个类选择器的权重并不比1个idi选择器权重高
+  </div>
+  <div class='parent'>
+    <span>
+      2、继承的权重为0
+    </span>
+  </div>
+  <hr />
+
+  <p>例1：</p>
+<div id='father' class='father1'>
+  <p id='child' class='child2'>
+    请问这行字什么颜色（蓝色）
+  </p>
+</div>
+<p>例2：</p>
+<div id='box1' class='c1'>
+  <div id='box2' class='c2'>
+      <div id='box3' class='c3'>
+        请问这行字什么颜色（绿色）
+      </div>
+  </div>
+</div>
+</body>
+</html>

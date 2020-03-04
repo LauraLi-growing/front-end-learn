@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>css三大模块</title>
   <style>
     /* border-style设置边框的样式，可选属性：none(无，默认)、solid(实线)、dashed(虚线)、dotted(点虚线)、double(双实线) */
@@ -12,7 +12,7 @@
       border-style:solid;
       border-color:darkorange; */
       /* 简写 */
-      border: 1px solid darkorange
+      border: 1px solid darkorange;
     }
 
     /* 边框可从上、右、下、左四个方向进行设置 */
@@ -21,7 +21,7 @@
       border-top-style:dotted;
       border-top-color:red; */
       /* 简写 */
-      border-top: 1px dotted red
+      border-top: 1px dotted red;
     }
 
     .user3 {
@@ -43,7 +43,7 @@
     }
 
     span {
-      color: red
+      color: red;
     }
 
     ul {
@@ -67,7 +67,7 @@
 
     /* border-radius的值只有一个时，代表四个角的弧度均为20 */
     .child:first-child {
-      border-radius: 20px
+      border-radius: 20px;
     }
 
     /* border-radius的值为盒子的一半或者50%时，表现为圆形 */
@@ -80,12 +80,12 @@
     /* border-radius的值为两个时，分别表示左上角和右下角20，右上角和左下角的弧度40 */
     .child:nth-child(3) {
       /* border-radius: 20px 40px; */
-      border-radius: 100px 0px
+      border-radius: 100px 0px;
     }
 
     /* border-radius的值为三个时，分别表示左上角10，右上角和左下角30，右下角的弧度60 */
     .child:nth-child(4) {
-      border-radius: 10px 30px 60px
+      border-radius: 10px 30px 60px;
     }
 
     /* border-radius的值为四个时，分别表示左上角20，右上角40，右下角60，左下角的弧度 80*/
@@ -97,27 +97,27 @@
     .padding {
       width: 200px;
       /* height: 40px; */
-      border: 1px solid blueviolet
+      border: 1px solid blueviolet;
     }
 
     /* padding只有一个值时，代表上边距10，右边距10，下边距10，左边距10 */
     .padding:first-child {
-      padding: 10px
+      padding: 10px;
     }
 
     /* padding有两个值时，代表上下边距10，左右边距20 */
     .padding:nth-child(2) {
-      padding: 10px 20px
+      padding: 10px 20px;
     }
 
     /* padding有三个值时，代表上边距10，左右边距20，下边距30 */
     .padding:nth-child(3) {
-      padding: 10px 20px 30px
+      padding: 10px 20px 30px;
     }
 
     /* padding有四个值时，代表上边距10px，右边距20px，下边距30px，左边距40px */
     .padding:nth-child(4) {
-      padding: 10px 20px 30px 40px
+      padding: 10px 20px 30px 40px;
     }
 
     /* 新浪导航栏样式 */
@@ -138,7 +138,7 @@
     }
 
     a:hover {
-      background-color: rgba(0, 0, 0, .1);
+      background-color: rgba(0, 0, 0, 0.1);
     }
 
     /* margin测试样式 */
@@ -151,22 +151,22 @@
 
     /* margin只有一个值时，代表上外边距，右外边距，下外边距，左外边距均为10 */
     .margin:first-child {
-      margin: 10px
+      margin: 10px;
     }
 
     /* margin两个值时，代表上下边距10，左右边距20 */
     .margin:nth-child(2) {
-      margin: 10px 20px
+      margin: 10px 20px;
     }
 
     /* margin三个值时，代表上边距10，左右边距20，下边距30 */
     .margin:nth-child(3) {
-      margin: 10px 20px 30px
+      margin: 10px 20px 30px;
     }
 
     /* margin四个值时，代表上边距10，右边距20，下边距30，左边距40 */
     .margin:nth-child(4) {
-      margin: 10px 20px 30px 40px
+      margin: 10px 20px 30px 40px;
     }
 
     .boxCenter {
@@ -191,7 +191,7 @@
       height: 300px;
       /* 插入图片设置位置使用margin进行设置 */
       margin-left: 50px;
-      margin-top: 10px
+      margin-top: 10px;
     }
 
     .picDif .backPic {
@@ -200,7 +200,7 @@
       color: green;
       border: 1px solid red;
       /* 背景图片 */
-      background: url('images/yanlingji.jpg');
+      background: url("images/yanlingji.jpg");
       background-size: contain;
       background-position: 0 0;
       background-repeat: no-repeat;
@@ -208,18 +208,71 @@
 
     /* 清除默认内外边距 */
     * {
-      margin: 0;
-      padding: 0
+      /* margin: 0;
+      padding: 0; */
     }
 
     /* 左右内外边距可以通过padding、margin进行设置，上下内外边距不可以设置 */
-    span[class='inline'] {
+    span[class="inline"] {
       color: indigo;
       border: 1px solid red;
       /* 上下内边距在ie6以下的浏览器中也有问题 */
       padding: 10px 50px;
       /* 只有左右外边距生效 */
       margin: 10px 40px;
+    }
+
+    /* 上下外边距合并 ,垂直方向出现外边距，以最大的一个为准，并不是两个外边距之和*/
+    .box_top {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin-bottom: 20px;
+    }
+
+    .box_bottom {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      margin-top: 30px;
+    }
+
+    /* 父元素赫尔子元素外边距塌陷 */
+    .parent_margin {
+      width: 200px;
+      height: 300px;
+      background-color: green;
+      margin-top: 40px;
+      /* 解决方法：1、给父元素设置上边框(border)或者设置上内边距(padding) */
+      /* border: 2px solid red; */
+      /* 2、给父元素设置overflow:hidden */
+      overflow: hidden;
+    }
+
+    .child_margin {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      margin-top: 20px;
+    }
+
+    /* 计算盒子尺寸 */
+    .elementSize {
+      /* padding不影响盒子的宽度的情况： */
+      /* 1、不给定盒子的宽度 */
+      /* width: 300px; */
+      height: 50px;
+      border: 1px solid #000;
+      padding-left:20px
+    }
+
+    .parent_size{
+      width: 300px;
+      height: 50px;
+      background-color: green;
+    }
+    .child_size{
+      padding-left: 20px;
     }
   </style>
 </head>
@@ -234,88 +287,120 @@
   <ul>
     <li>
       border<br /><br />
-      用户名：<input class='user' /><br /><br />
-      昵 称：<input class='user2' /><br /><br />
-      网 名：<input class='user3' /><br /><br />
+      用户名：<input class="user" /><br /><br />
+      昵 称：<input class="user2" /><br /><br />
+      网 名：<input class="user3" /><br /><br />
       编写表格的细边框：
-      <table class='table' cellspacing='0' cellpadding='0'>
-        <tr class='tr'>
-          <td class='td'>123</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
+      <table class="table" cellspacing="0" cellpadding="0">
+        <tr class="tr">
+          <td class="td">123</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
         </tr>
-        <tr class='tr'>
-          <td class='td'>123</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
+        <tr class="tr">
+          <td class="td">123</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
         </tr>
-        <tr class='tr'>
-          <td class='td'>123</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
+        <tr class="tr">
+          <td class="td">123</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
         </tr>
-        <tr class='tr'>
-          <td class='td'>123</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
-          <td class='td'>133</td>
+        <tr class="tr">
+          <td class="td">123</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
+          <td class="td">133</td>
         </tr>
-      </table><br />
+      </table>
+
+      <br />
       CSS3新增的border属性：<span>圆角属性</span>
       <div>
-        <div class='child'>20px</div>
-        <div class='child'>100px或者50%</div>
-        <div class='child'>20px 40px</div>
-        <div class='child'>10px 30px 60px</div>
-        <div class='child'>20px 40px 60px 80px</div>
+        <div class="child">20px</div>
+        <div class="child">100px或者50%</div>
+        <div class="child">20px 40px</div>
+        <div class="child">10px 30px 60px</div>
+        <div class="child">20px 40px 60px 80px</div>
       </div>
     </li>
     <li>
       padding<br /><br />
       <div>
-        <div class='padding'> padding: 10px</div>
-        <div class='padding'>padding: 10px 20px</div>
-        <div class='padding'> padding: 10px 20px 30px</div>
-        <div class='padding'>padding: 10px 20px 30px 40px</div>
+        <div class="padding">padding: 10px</div>
+        <div class="padding">padding: 10px 20px</div>
+        <div class="padding">padding: 10px 20px 30px</div>
+        <div class="padding">padding: 10px 20px 30px 40px</div>
       </div>
       <p>新浪导航栏：</p>
-      <div class='nav'>
-        <a href='#'>设为首页</a>
-        <a href='#'>手机新浪网</a>
-        <a href='#'>移动客户端</a>
-        <a href='#'>博客</a>
-        <a href='#'>微博</a>
-        <a href='#'>关注我</a>
+      <div class="nav">
+        <a href="#">设为首页</a>
+        <a href="#">手机新浪网</a>
+        <a href="#">移动客户端</a>
+        <a href="#">博客</a>
+        <a href="#">微博</a>
+        <a href="#">关注我</a>
       </div>
     </li>
     <li>
       margin<br /><br />
       <div>
         （1）margin的不同取值个数分别代表的意思<br />
-        <div class="margin"> margin:10px</div>
-        <div class="margin"> margin:10px 20px</div>
+        <div class="margin">margin:10px</div>
+        <div class="margin">margin:10px 20px</div>
         <div class="margin">margin:10px 20px 30px</div>
         <div class="margin">margin:10px 20px 30px 40px</div>
       </div>
       （2）盒子居中对齐和文字居中对齐<br />
-      <div class='boxCenter'>盒子居中对齐：设置盒子定宽，再设置margin:0 auto；<br />文字居中对齐：text-align:center</div>
-      （3）插入图片和背景图片的区别<br />
-      <div class='picDif'>
-        插入图片：通过img标签引入，大小使用width和height进行设置，位置使用margin进行设置，不会和文字产生重叠<br />
-        <img src='images/baifeng.jpg' /><br />
-        背景图片：通过background-url引入，大小使用background-size进行设置，位置使用background-position进行设置，遇到文字会在文字下方<br />
-        <div class='backPic'>背景图片</div>
+      <div class="boxCenter">
+        盒子居中对齐：设置盒子定宽，再设置margin:0 auto；<br />文字居中对齐：text-align:center
       </div>
-      （4）清除内外边距：不同的网页展示时，会有不同的默认内外边距，要使页面显示统一，使用padding:0 0和margin:0 0来清除<br />
+      （3）插入图片和背景图片的区别<br />
+      <div class="picDif">
+        插入图片：通过img标签引入，大小使用width和height进行设置，位置使用margin进行设置，不会和文字产生重叠<br />
+        <img src="images/baifeng.jpg" /><br />
+        背景图片：通过background-url引入，大小使用background-size进行设置，位置使用background-position进行设置，遇到文字会在文字下方<br />
+        <div class="backPic">背景图片</div>
+      </div>
+      （4）清除内外边距：不同的网页展示时，会有不同的默认内外边距，要使页面显示统一，使用padding:0
+      0和margin:0 0来清除<br />
       （5）行内元素上下内外边距的问题<br />
-      <span class='inline'>行内元素，尽量不要设置上下内外边距</span><br />
-        （6）外边距合并<br />
-
+      <span class="inline">行内元素，尽量不要设置上下内外边距</span><br /><br /><br /><br />
+      （6）外边距合并（塌陷）<br />
+      <ul>
+        <li>
+          同级元素外边距合并：<br />
+          <div class="box_top">margin-top: 30px;</div>
+          <div class="box_bottom">margin-bottom: 20px;</div>
+          解决方法：只设置一边的边距
+        </li>
+        <li>
+          父元素和子元素外边距合并：<br />
+          <hr />
+          <div class="parent_margin">
+            <div class="child_margin">
+              解决方法： 1、给父元素设置上边框(border)或者设置上内边距(padding)
+              2、给父元素设置overflow:hidden
+            </div>
+          </div>
+        </li>
+      </ul>
     </li>
   </ul>
+  <hr /><br />
+  <p>计算盒子的外盒尺寸（空间尺寸）和内盒尺寸（元素大小）</p>
+  <ul>
+    <li>外盒尺寸：content+padding+border+margin</li>
+    <li>内盒尺寸：content+padding+border</li>
+  </ul>
+  <p>设置padding值不影响盒子的大小的情况：</p>
+  <div class='elementSize'>1、当没有给定盒子的宽度时</div>
+  <div class="parent_size">
+    <div class="child_size">2、继承父元素的宽度时</div>
+  </div>
 </body>
-
 </html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 1、获取对象自身的属性
+        function Foo(name) {
+            this.name = name;
+        }
+
+        Foo.prototype.alertName = function () {
+            alert(this.name)
+        }
+
+        var foo = new Foo()
+        foo.printName = function () {
+            console.log(this.name)
+        }
+
+        for (var item in foo) {
+            console.log('所有属性', item);
+            if (foo.hasOwnProperty(item)) {
+                console.log('对象本身属性', item)
+            }
+        }
+
+        if (foo instanceof Foo) {
+            console.log('Foo是foo的构造函数')
+            if (foo instanceof Object) {
+                console.log('Object是foo的构造函数')
+            }
+        }
+
+        // 2、编写一个原型继承的例子
+        function Elem(id) {
+            this.Elem = document.getElementById(id)
+        }
+
+        Elem.prototype.html = function (val) {
+            var elem = this.elem;
+            if (val) {
+                elem.innerHTML = val;
+                console.log('elem.innerHTML', elem.innerHTML)
+                return this
+            } else {
+                return elem.innerHTML
+            }
+        }
+
+        Elem.prototype.on = function (type, fn) {
+            var elem = this.elem;
+            elem.addEventListener(type, fn);
+            return this
+        }
+
+        var div1 = new Elem('hhh')
+        // div1.html('<p>这是一个新的标签</p>')
+        // div1.on('click', function () {
+        //     alert(33333)
+        // })
+
+        // 3、创建10个a标签，点击的时候弹出对应的序号
+        function createElem() {
+            for (var i = 0; i < 10; i++) {
+                (function (i) {
+                    var a = document.createElement('a')
+                    a.innerHTML = '这是第' + i + '个a标签' + '<br />'
+                    a.addEventListener('click', function () {
+                        alert(i)
+                    })
+                    document.body.appendChild(a)
+                })(i)
+            }
+        }
+
+        // 4、开发中闭包的应用
+        function isFirstLoad() {
+            var idList = []
+            return function (id) {
+                if (idList.indexOf(id) >= 0) {
+                    console.log('这个id已经被占用', idList)
+                    return false
+                } else {
+                    idList.push(id)
+                    console.log('此id已保存', idList)
+                    return true
+                }
+            }
+        }
+
+        function outer() {
+            var result = [];
+            for (var i = 0; i < 10; i++) {
+                // result[i] = (function () {
+                //     console.log('i1', i)
+                //     return function (num) {
+                //         console.log('i2', num)
+                //     }
+                // })(i)
+
+                result[i] = function () {
+                    console.log(i)
+                    return i
+                }
+            }
+            console.log(result)
+            return result
+        }
+
+        var object = {
+            name: 'object',
+            getName: function () {
+                return function () {
+                    console.log(this)
+                }
+            }
+        }
+        object.getName()()
+
+        for (var i = 1; i <= 5; i++) {
+            (function (j) {
+                setTimeout(function timer() {
+                    console.log(j);
+                }, 1000);
+            })(i)
+
+        }
+
+        // 5、引用类型作为参数传递
+        function test(person){
+            person.age=26;
+            person={
+                name:'hhh',
+                age:30
+            }
+            return person
+        }
+
+        p1={
+            name:'xxx',
+            age:18
+        }
+
+        var p2= test(p1)
+        console.log('p1',p1)
+        console.log('p2',p2)
+
+
+
+    </script>
+</head>
+
+<body>
+    <p id='hhh'>1、获取对象自身的属性</p>
+    <p>2、编写一个原型继承的例子</p>
+    <p onclick="createElem()">3、创建10个a标签，点击的时候弹出对应的序号</p>
+    <p onclick="isFirstLoad()(10)">4、实际开发中闭包的应用</p>
+    <!-- <p onclick="object.getName()()">jjjjjjj</p> -->
+</body>
+
+</html>

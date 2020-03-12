@@ -263,17 +263,42 @@
       /* width: 300px; */
       height: 50px;
       border: 1px solid #000;
-      padding-left:20px
+      padding-left: 20px
     }
 
-    .parent_size{
+    .parent_size {
       width: 300px;
       height: 50px;
       background-color: green;
     }
-    .child_size{
+
+    .child_size {
       padding-left: 20px;
     }
+
+    .triangle {
+      width: 0;
+      height: 0;
+      border-top: 100px solid transparent;
+      border-bottom: 100px solid pink;
+      border-left: 100px solid transparent;
+      border-right: 100px solid skyblue;
+    }
+
+    .line {
+      width: 500px;
+      height: 1px;
+      background-color: red;
+    }
+
+    .softLine {
+      width: 300px;
+      height: 1px;
+      background-color: red;
+      transform: scaleY(0.5);
+    }
+
+    
   </style>
 </head>
 
@@ -392,15 +417,24 @@
     </li>
   </ul>
   <hr /><br />
+
   <p>计算盒子的外盒尺寸（空间尺寸）和内盒尺寸（元素大小）</p>
   <ul>
     <li>外盒尺寸：content+padding+border+margin</li>
     <li>内盒尺寸：content+padding+border</li>
   </ul>
+
   <p>设置padding值不影响盒子的大小的情况：</p>
   <div class='elementSize'>1、当没有给定盒子的宽度时</div>
   <div class="parent_size">
     <div class="child_size">2、继承父元素的宽度时</div>
   </div>
+
+  <!-- 画三角形和0.5px的细线 -->
+  <div class="triangle"></div><br />
+  <div class="line"></div><br /><br />
+  <div class="softLine"></div><br /><br />
+  <div class="line"></div><br /><br />
 </body>
+
 </html>

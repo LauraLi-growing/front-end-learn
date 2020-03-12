@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webAPI_ajax</title>
+</head>
+
+<body>
+    <h3>webAPI_ajax</h3>
+    <ul>
+        <li>跨域<br />
+            <p>浏览器有同源策略，不允许ajax访问其他域的接口。协议、域名、端口有一个不相同都算跨域。</p>
+        </li>
+        <li>可以不遵循同源策略的标签<br />
+            <p>img、script、link。link、script可以用于CDN，script可以用于JSONP</p>
+        </li>
+        <li>实现跨域的方式<br />
+            <h4>1、JSONP</h4>
+            <p>JSONP跨域请求的关键是返回的数据外面包裹一层客户端已经定义好的函数</p>
+            <h4>2、服务其端设置http header</h4>
+        </li>
+        <li>readyState<br />
+            <p>0:未初始化，还没有调用send()方法</p>
+            <p>1:载入，已经调用send()方法</p>
+            <p>2:载入完成，send()方法执行完成，已经接收到全部的响应内容</p>
+            <p>3:交互，正在解析响应内容</p>
+            <p>4:完成，响应内容解析完成，可以在客户端调用了</p>
+        </li>
+    </ul>
+    <script>
+        function myAjax() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://www.baidu.com', false);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        alert(xhr.responseText)
+                    }
+                }
+            }
+            xhr.send(null)
+        }
+    </script>
+</body>
+
+</html>

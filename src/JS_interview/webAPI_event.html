@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webAPI</title>
+
+</head>
+
+<body>
+    <h3 id='hhh'>常说的JS（浏览器执行的JS）包含两部分：</h3>
+    <ul>
+        <li>JS基础知识（ECMA262标准）<br />
+            <h5>JS基础内置函数：Number, String, Boolean, Array, Function, Object</h5>
+            <h5>JS基础内置对象：Math, Date, RegExp, Error</h5>
+        </li>
+        <li>JS-Web-API（W3C标准）<br />
+            <div>
+                <h4>DOM操作</h4>
+                <P>dom节点操作</P>
+                <ul>
+                    <li id='li_id1'>获取dom节点</li>
+                    <li id='li_id2'>property：js对象的属性</li>
+                    <li id='li_id3'>Attribute：标签属性</li>
+                </ul>
+
+                <p>dom结构操作</p>
+                <ul>
+                    <li>新增节点</li>
+                    <li>获取父节点</li>
+                    <li>获取子节点</li>
+                    <li>删除节点</li>
+                </ul>
+            </div>
+            <div>
+                <h4>BOM操作</h4>
+                <ul>
+                    <li>Navigator</li>
+                    <li>screen</li>
+                    <li>location</li>
+                    <li>history</li>
+                </ul>
+            </div>
+            <div>
+                <h4>事件绑定</h4>
+                <p>1、通用事件绑定</p>
+                <button id='btn1' onclick="clickBtn1()">点击事件</button>
+
+                <p>2、事件冒泡</p>
+                <div id='div1' onclick="clickDiv1()">
+                    <p id='p1' onclick="clickP1()">激活</p>
+                    <p id='p2'>取消</p>
+                    <p id='p3'>取消</p>
+                </div>
+
+                <p>3、代理</p>
+                <div id="div2">
+                    <a href='#'>div2-a1</a>
+                    <a href='#'>div2-a2</a>
+                    <a href='#'>div2-a3</a>
+                    <a href='#'>div2-a4</a>
+                </div>
+
+                <p>4、完善通用事件绑定</p>
+                <div id="div3">
+                    <a href='#' id='a1'>div3-a1</a>
+                    <a href='#'>div3-a2</a>
+                    <a href='#'>div3-a3</a>
+                    <a href='#'>div3-a4</a>
+                </div>
+            </div>
+            <div>
+                <h4>ajax请求（包括http协议）
+
+                </h4>
+            </div>
+            <div>
+                <h4>存储</h4>
+            </div>
+        </li>
+    </ul>
+
+    <script type='text/javascript'>
+        // 获取dom节点
+        // var h3 = document.getElementById('hhh')
+        // var divList = document.getElementsByTagName('div')
+        // console.log(divList)
+        // var h5List = document.querySelectorAll('h5')
+        // console.log(h5List)
+
+        // 新增节点
+        // var div1 = document.getElementById('div1')
+        // var p1 = document.createElement('p1')
+        // p1.innerHTML = 'this is p1'
+        // document.appendChild(p1)
+
+        // var p2 = document.getElementById('p2')
+        // div1.appendChild('p2')
+
+        // 获取父节点
+        // var parent = div1.parentElement
+
+        // 获取子节点
+        // var child = div1.childNodes
+
+        // 删除节点
+        // div1.removeChild(child[0])
+
+        // 通用事件绑定
+        function bindEvent(ele, type, fn) {
+            ele.addEventListener(type, fn)
+        }
+
+        var btn1 = document.getElementById('btn1')
+        function clickBtn1() {
+            bindEvent(btn1, 'click', function () {
+                alert(btn1.innerHTML)
+            })
+        }
+
+        // 2、事件冒泡
+        var div1 = document.getElementById('div1')
+        var p1 = document.getElementById('p1')
+
+        function clickP1() {
+            bindEvent(p1, 'click', function (e) {
+                e.stopPropagation()
+                alert(p1.innerHTML)
+            })
+        }
+        function clickDiv1() {
+            bindEvent(div1, 'click', function () {
+                alert(div1.innerHTML)
+            })
+        }
+
+        // 3、代理
+        var div2 = document.getElementById('div2')
+        div2.addEventListener('click', function (e) {
+            e.preventDefault()
+            console.log(e.target.innerHTML)
+        })
+
+        // 4、完善通用事件绑定
+        function bindEvent2(elem, type, selector, fn) {
+            if (fn == null) {
+                fn = selector;
+                selector = null
+            }
+
+            elem.addEventListener(type, function (e) {
+                if (selector) {
+                    if(selector==e.target.nodeName.toLowerCase()){
+                        // console.log(e.target.nodeName)
+                    }
+                    fn.call(e.target, e)
+                } else {
+                    fn(e)
+                }
+            })
+        }
+
+        var div3 = document.getElementById('div3')
+        bindEvent2(div3, 'click', 'a', function (e) {
+            e.preventDefault()
+            console.log('this.innerHTML---',this.innerHTML)
+            console.log('e.target.innerHTML---',e.target.innerHTML)
+        })
+
+        var a1 = document.getElementById('a1')
+        bindEvent2(a1, 'click',function(e){
+            e.preventDefault()
+            // console.log('不要代理')
+        })
+    </script>
+</body>
+
+</html>

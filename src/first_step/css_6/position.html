@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+    <style>
+        .relativeBox{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        .relativeBox:nth-child(2){
+            position: relative;
+            left: 50px;
+            top:20px;
+            background-color: skyblue;
+        }
+
+        .absoluteBox1{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            position: absolute;
+            /* left: 10px;
+            top:10px */
+
+        }
+        .absoluteBox2{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+
+        .p1{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+        .s1{
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            position: absolute;
+            left:300px;
+            top:300px;
+        }
+        /* 2、父级元素有定位，子元素每次移动以父级元素左上角为基点进行移动。 */
+        .p2{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* 父级定位还可以是absolute，但是子绝父相用的场景最多 */
+            position: relative; 
+        }
+        .s2{
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            position: absolute;
+            left:20px;
+            top:20px; 
+        }
+        /* 3、绝对定位垂直水平居中 */
+        .p3{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            position: relative; 
+        }
+        .s3{
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            position: absolute;
+            left:50%;
+            top:50%; 
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+
+        .fixedBox{
+            width: 200px;
+            height: 50px;
+            background-color: pink;
+            position: fixed;
+            top: 100px;
+            left: 800px;
+        }
+
+        .zIndexBox{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 300px;
+            top: 300px;
+        }
+        .zIndexBox:first-child{
+            background-color: purple;
+            z-index: 1;
+        }
+        .zIndexBox:nth-child(2){
+            background-color: pink;
+            left: 330px;
+            top: 330px;
+        }
+        .zIndexBox:last-child{
+            background-color: skyblue;
+            left:360px;
+            top:360px
+        }
+
+        .inlineBlockBox1{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* 设置浮动，就能使行内元素转换成行内块元素 */
+            /* float: left; */
+            /* 设置绝对定位或者固定定位也能使行内元素转换成行内块元素 */
+            /* position: absolute; */
+        }
+        .inlineBlockBox2{
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+            /* position: absolute; */
+        }
+
+        .visibility{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* margin:0 auto; */
+            text-align: center;
+            line-height: 100px;
+            position: relative;
+        }
+        .visibility img{
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            left: 110px;
+            top: 0px;
+            display: none;
+        }
+        .visibility:hover img{
+            display: block;
+        }
+
+        .overflowBox{
+            width: 800px;
+            height: 200px;
+            background-color: skyblue;
+        }
+        .clearfix:after{
+            display: block;
+            content: 'hh';
+            visibility: hidden;
+            height: 0;
+            clear: both;
+        }
+        .clearfix{
+            *zoom:1
+        }
+        .visible,.auto,.scroll,.hidden{
+            width: 200px;
+            height: 150px;
+            float: left;
+        }
+        .visible{
+            background-color: pink;
+            overflow:visible
+        }
+        .auto{
+            background-color: hotpink;
+            overflow: auto;
+        }
+        .scroll{
+            background-color: deeppink;
+            overflow: scroll;
+        }
+        .hidden{
+            background-color: rgb(241, 23, 205);
+            overflow: hidden;
+        }
+
+
+       
+    </style>
+</head>
+<body>
+    <h3>定位</h3>
+    元素的定位属性主要包括定位模式和边偏移两部分<br />
+    定位分类：static、relative、absolute、fixed<br />
+    边偏移：top、right、bottom、left<br />
+    <p>1、static静态定位</p>
+    静态定位。position默认的定位，对于边偏移无效，一般用来清除定位。<br />
+
+    <p>2、relative相对定位</p>
+    相对定位。每次移动以初始未知的左上角为基点进行移动，不脱离文档流，原来所占的位置继续占有。<br />
+    <div>
+        <div class="relativeBox"></div>
+        <div class="relativeBox">relative</div>
+        <div class="relativeBox"></div>
+    </div>
+
+    <p>3、absolute绝对定位</p>
+    绝对定位。完全脱离标准流，不占有位置。<br />
+    <div class="absoluteBox1">absolute</div>
+    <div class="absoluteBox2"></div>
+    1、父级元素没有定位，子元素每次移动以浏览器窗口左上角为基点进行移动，脱离文档流。
+    <div class="p1">
+        <div class="s1">孩子离家出走了</div>
+    </div>
+    2、父级元素有定位，子元素每次移动以父级元素左上角为基点进行移动。
+    <div class="p2">
+        <div class="s2"></div>
+    </div>
+    3、绝对定位垂直水平居中
+    <div class="p3">
+        <div class="s3"></div>
+    </div>
+
+    <p>4、fixed固定定位</p>
+    固定定位。固定定位的元素跟父级元素没有任何关系，只认浏览器。并且脱离文档流，不占有位置，不随着滚动条滚动。
+    <div class="fixedBox">fixedBox</div>
+
+    <p>5、z-index叠放次序</p>
+    <p>（1）z-index的默认属性值是0，值越大，定位元素在层叠元素中越居上</p>
+    <p>（2）如果取值相同，则根据书写顺序，后来居上</p>
+    <p>（3）后面数字一定不能加单位</p>
+    <p>（4）只有相对定位，绝对定位，固定定位有此属性，其余标准流，浮动，静态定位都无此属性，亦不可指定此属性</p>
+    <div>
+        <div class="zIndexBox">z-index:1</div>
+        <div class="zIndexBox">z-index:0</div>
+        <div class="zIndexBox">z-index:0</div>
+    </div>
+
+    <p>6、定位模式转换</p>
+    <p>跟浮动一样，元素添加了绝对定位和固定定位后元素模式也会发生转换，都转换为行内块模式。可以直接设置给宽度和高度</p>
+    <span class="inlineBlockBox1">inlineBlockBox</span>
+    <div class="inlineBlockBox2"></div>
+
+    <p>7、元素的显示与隐藏</p>
+    （1）display：none，文档节点存在，但页面位置不保留。元素内容显示需设置display：block<br />
+    （2）visibility：hidden，文档节点存在，页面位置保留。元素内容显示需设置visibility：visible<br />
+    <div class="visibility">点我，点我
+        <img src="images/tian.jpg" alt="天行九歌">
+    </div>
+    （3）overflow属性：检索或设置当对象的内容超过其指定高度及宽度时如何管理内容<br />
+    <div class="overflowBox clearfix">
+        <div class="visible">
+            visible：默认属性，和不设置效果一样<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+        </div>
+        <div class="auto">
+            auto：内容不超出盒子宽或者高时，不显示滚动条；内容超出盒子时，出现滚动条<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+        </div>
+        <div class="scroll">
+            scroll：不管内容是否超出盒子，都会出现滚动条
+        </div>
+        <div class="hidden">
+            hidden：内容超出盒子不显示超出内容
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+            哈<br />
+        </div>
+    </div>
+</body>
+</html>

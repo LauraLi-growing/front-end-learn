@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档流</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .parent {
+            width: 1000px;
+            height: 700px;
+            border: 1px dashed #000;
+        }
+
+        .p1,
+        .p2,
+        .p3,
+        .p4,
+        .p5 {
+            border: 1px solid #000;
+        }
+
+        .c1-1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        .c1-2 {
+            width: 200px;
+            height: 50px;
+            background-color: hotpink;
+        }
+
+        .p2 {
+            width: 300px;
+            height: 120px;
+            padding: 10px;
+        }
+
+        .c2-1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            float: left;
+        }
+
+        .c3-1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            float: left;
+        }
+
+        .c3-2 {
+            width: 200px;
+            height: 50px;
+            background-color: hotpink;
+        }
+
+        .c4-1 {
+            width: 100px;
+            height: 100px;
+            background-color: deeppink;
+        }
+
+        .c4-2 {
+            width: 200px;
+            height: 50px;
+            background-color: hotpink;
+            float: left;
+        }
+
+        .c5-1 {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            float: left;
+        }
+
+        .c5-2 {
+            width: 200px;
+            height: 50px;
+            background-color: hotpink;
+            float: left;
+        }
+
+        .header1,
+        .main1,
+        .footer1 {
+            width: 960px;
+            margin: 0 auto;
+            border: 1px dashed #000;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .header1 {
+            height: 50px;
+            background-color: pink;
+        }
+
+        .main1 {
+            height: 300px;
+            background-color: hotpink;
+        }
+
+        .footer1 {
+            height: 40px;
+            background-color: deeppink;
+        }
+
+        .header2,
+        .main2,
+        .footer2 {
+            width: 960px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 10px;
+            border: 1px dashed #000;
+        }
+
+        .header2 {
+            height: 50px;
+            background-color: skyblue;
+        }
+
+        .main2 {
+            height: 300px;
+        }
+
+        .main2 .left {
+            width: 360px;
+            height: 300px;
+            background-color: yellow;
+            float: left;
+        }
+
+        .main2 .right {
+            width: 592px;
+            height: 300px;
+            background-color: blue;
+            float: right;
+        }
+
+        .footer2 {
+            height: 40px;
+            background-color: black;
+        }
+
+        .header3,
+        .footer3 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .header3 {
+            height: 50px;
+            background-color: black;
+        }
+
+        .banner {
+            width: 960px;
+            height: 200px;
+            margin: 10px auto;
+            text-align: center;
+            border-radius: 10px;
+            background-color: skyblue;
+        }
+
+        .main3 {
+            width: 960px;
+            height: 200px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+        .main3 ul {
+            list-style: none;
+        }
+
+        .main3 ul li {
+            width: 240px;
+            height: 200px;
+            float: left;
+            text-align: center;
+            background-color: pink;
+        }
+
+        .main3 ul li:nth-child(even) {
+            background-color: hotpink;
+        }
+
+        .footer3 {
+            height: 40px;
+            background-color: black;
+        }
+
+        .p1 {
+            width: 200px;
+            background-color: skyblue;
+            /* （2）父级添加overflow方法 ,hidden,auto,scroll都可以实现,触发了BFC*/
+            /* overflow: hidden; */
+        }
+
+        .p1 .son1 {
+            width: 100px;
+            height: 50px;
+            background-color: purple;
+            float: left;
+        }
+
+        .p1 .son2 {
+            width: 50px;
+            height: 80px;
+            background-color: hotpink;
+            float: left;
+        }
+
+        .p2 {
+            width: 300px;
+            height: 100px;
+            background-color: pink;
+        }
+
+        /* （1）额外标签法 */
+        /* .clear{
+            clear: both;
+        } */
+
+        /* （3）after伪元素清除浮动 */
+        /* .clearfix:after{
+            display:block;
+            content: 'hhhhh';
+            visibility: hidden;
+            height: 0;
+            clear: both;    
+        } */
+        .clearfix {
+            /* 兼容ie6,7的清除浮动的样式 */
+            *zoom: 1
+        }
+
+        /* （4）使用双伪元素清除浮动的方法 */
+        .clearfix::before,
+        .clearfix::after {
+            content: '';
+            /* 触发bfc，防止外边距合并 */
+            display: table;
+        }
+
+        .clearfix::after {
+            clear: both;
+        }
+
+        /* .clearfix{
+            *zoom:1
+        } */
+    </style>
+</head>
+
+<body>
+    <h3>CSS的定位机制：标准流、浮动、定位</h3>
+    <h3>浮动</h3>
+    <b>一、浮动的目的是让块级元素排列在一行，且没有空隙</b>
+    <div class="parent">
+        <ul>
+            <li>1、子元素没有浮动（标准流）时<br />
+                <div class="p1">
+                    <div class="c1-1">子元素1</div>
+                    <div class="c1-2">子元素2</div>
+                </div>
+            </li>
+
+            <li>2、子元素在父元素内浮动，不会越过padding内边距<br />
+                <div class="p2">
+                    <div class="c2-1">子元素1</div>
+                </div>
+            </li>
+
+            <li>3、子元素1浮动，子元素2不浮动时<br />
+                <div class="p3">
+                    <div class="c3-1">子元素1</div>
+                    <div class="c3-2">子元素2</div>
+                </div>
+            </li>
+
+            <li>4、子元素1不浮动，子元素2浮动时<br />
+                <div class="p4">
+                    <div class="c4-1">子元素1</div>
+                    <div class="c4-2">子元素2</div>
+                </div>
+            </li>
+
+            <li>5、子元素1浮动，子元素2浮动时<br />
+                <div class="p5">
+                    <div class="c5-1">子元素1</div>
+                    <div class="c5-2">子元素2</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <b>二、常用布局</b>
+    <p>1、一列固定宽度且居中</p>
+    <div class="header1">header1</div>
+    <div class="main1">main1</div>
+    <div class="footer1">footer1</div>
+
+    <p>2、两列左窄右宽型</p>
+    <div class="header2">header2</div>
+    <div class="main2">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div class="footer2">footer2</div>
+
+    <p>3、通栏平均分布型</p>
+    <div class="header3">header3</div>
+    <div class="banner">banner</div>
+    <div class="main3">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <div class="footer3">footer3</div>
+
+    <b>三、清除浮动</b>
+    <p>1、为什么要解决清除浮动？</p>
+    <p> 清除浮动的本质是为了解决父级元素因为子级浮动引起的内部高度为0的情况</P>
+    <p>2、清除浮动的方法</p>
+    （1）额外标签法<br />
+    <p>优点：通俗易懂，书写简便</p>
+    <p>缺点：添加无意义的标签，结构化比较差</p>
+    <div class="p1 clearfix">
+        <div class="son1">son1</div>
+        <div class="son2">son2</div>
+        <!-- <div class="clear"></div> -->
+    </div>
+    <div class="p2"></div>
+    （2）父级添加overflow方法<br />
+    （3）after伪元素清除浮动<br />
+    <p>:after方式为空元素的升级版，优点是不用单独添加标签了</p>
+    （4）使用双伪元素清除浮动的方法<br />
+</body>
+
+</html>

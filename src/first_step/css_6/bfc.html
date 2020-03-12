@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bfc</title>
+    <style>
+        .rowOne {
+            background: #f00;
+            height: 100px;
+            margin-bottom: 30px;
+
+        }
+
+        .rowTwo {
+            background: pink;
+            height: 100px;
+            margin-top: 30px;
+        }
+
+        .p1 {
+            overflow: hidden;
+        }
+
+        .left {
+            width: 100px;
+            height: 150px;
+            float: left;
+            background: rgb(139, 214, 78);
+            text-align: center;
+            line-height: 150px;
+            font-size: 20px;
+        }
+        .p2{
+            overflow: hidden;
+        }
+        .p2 .right {
+            height: 300px;
+            background: rgb(170, 54, 236);
+            text-align: center;
+            line-height: 300px;
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- bfc -->
+    <p>1、解决垂直方向上margin值会重叠的问题</p>
+    <div class="rowOne"></div>
+    <div class="p1">
+        <div class="rowTwo"></div>
+    </div>
+
+    <p>2、解决浮动元素重叠问题</p>
+    <div class="left">left</div>
+    <div class="p2">
+        <div class="right">right</div>
+    </div>
+
+    
+</body>
+
+</html>
